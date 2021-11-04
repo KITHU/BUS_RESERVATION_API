@@ -1,0 +1,19 @@
+language: python
+python:
+  - "3.8"
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+# command to install dependencies
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls
+  - pip install codeclimate-test-reporter
+# command to run tests
+script:
+  - pytest --cov-report term-missing --cov=api
+
+after_success:
+  - coveralls
+  - codeclimate-test-reporter
