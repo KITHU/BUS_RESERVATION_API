@@ -14,6 +14,7 @@ pytest-cov = "*"
 whitenoise = "*"
 gunicorn = "*"
 drf-yasg = "*"
+django-cors-headers = "*"
 
 [requires]
 python_version = "3.8"

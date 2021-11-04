@@ -38,6 +38,9 @@ AUTH_USER_MODEL = 'authentication.User'
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 # Application definition
 
+# CORS HEADERS settings
+CORS_ORIGIN_ALLOW_ALL = True
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -47,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'drf_yasg',
+    'corsheaders',
     'api.src.authentication',
     'api.src.products',
 ]
@@ -65,6 +69,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
