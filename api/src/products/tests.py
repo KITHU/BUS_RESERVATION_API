@@ -25,6 +25,5 @@ class ProductsTests(BaseTest):
         }
         res = self.client.post(self.PRODUCT_CREATE_URL,
         data1,HTTP_AUTHORIZATION=self.access_token,format="json")
-        import pdb; pdb.set_trace()
         res1= self.client.get(self.PRODUCT_RETRIEVE_URL+str(res.data['id'])+"/", format="json")
         self.assertEqual(res1.status_code,status.HTTP_200_OK)
