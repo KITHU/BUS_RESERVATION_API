@@ -5,7 +5,7 @@ from .serializer import RegisterSerializer, LoginSerializer
 from api.permissions import CreateUsersPermissions
 
 class RegisterApiView(generics.GenericAPIView):
-    permission_classes = [CreateUsersPermissions]
+    #permission_classes = [CreateUsersPermissions]
     serializer_class = RegisterSerializer
 
     def post(self, request):
