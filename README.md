@@ -1,7 +1,12 @@
+[![Build Status](https://app.travis-ci.com/KITHU/SHOP_API.svg?branch=develop)](https://app.travis-ci.com/KITHU/SHOP_API)
+[![Coverage Status](https://coveralls.io/repos/github/KITHU/SHOP_API/badge.svg?branch=develop)](https://coveralls.io/github/KITHU/SHOP_API?branch=develop)
 
 # **Shop-Api**
 ### **API Documentation**
 - This is a sample api using drf, It has three types of users admin, managers and cashier
+
+  - [swagger documentation](https://shop-api-v1.herokuapp.com/)
+
   ##### admin
   - admin can create users, products and also delete them.
   ##### manager
@@ -41,6 +46,12 @@
     pytest
   ```
 
+### test user details
+```
+  email: test@test.com
+  password: test1234
+
+```
 ## **Endpoints:**
 ### Register
 
