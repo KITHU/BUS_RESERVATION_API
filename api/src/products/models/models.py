@@ -10,3 +10,7 @@ class Products(models.Model):
 
     def __str__(self):
         return self.name
+
+class Files(models.Model):
+    my_file = models.FileField(upload_to='file')
+    file_type = models.CharField(max_length=35)

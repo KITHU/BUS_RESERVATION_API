@@ -15,6 +15,7 @@ whitenoise = "*"
 gunicorn = "*"
 drf-yasg = "*"
 django-cors-headers = "*"
+daphne = "*"
 
 [requires]
 python_version = "3.8"
