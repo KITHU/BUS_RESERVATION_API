@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from rest_framework.exceptions import AuthenticationFailed
 from django.contrib import auth
+from rest_framework.fields import ReadOnlyField
 from .models import User
 
 
@@ -9,7 +10,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id','username','email','role','password']
+        fields = ['id','username','email','role','password','user_manager']
 
     def validate(self, attr):
         username = attr.get('username', '')
@@ -46,3 +47,10 @@ class LoginSerializer(serializers.ModelSerializer):
             'role' : user.role,
             'tokens': user.tokens
         }
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User 
+        fields = ['id','email','username','role','user_manager']
+        

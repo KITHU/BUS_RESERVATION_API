@@ -16,6 +16,7 @@ class UserManager(BaseUserManager):
         user=self.model(username=username, email=self.normalize_email(email))
         user.set_password(password)
         user.role= kwargs.get('role', 3)
+        user.user_manager = kwargs.get('user_manager','')
         user.save()
         return user
 
@@ -49,6 +50,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True, default=3)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    user_manager = models.ForeignKey('User', on_delete=DO_NOTHING, blank=True, null=True,)
   
 
     USERNAME_FIELD = 'email'

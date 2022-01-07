@@ -16,6 +16,7 @@ gunicorn = "*"
 drf-yasg = "*"
 django-cors-headers = "*"
 daphne = "*"
+django-filter = "*"
 
 [requires]
 python_version = "3.8"

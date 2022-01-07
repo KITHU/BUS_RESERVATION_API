@@ -1,18 +1,11 @@
 [![Build Status](https://app.travis-ci.com/KITHU/SHOP_API.svg?branch=develop)](https://app.travis-ci.com/KITHU/SHOP_API)
 [![Coverage Status](https://coveralls.io/repos/github/KITHU/SHOP_API/badge.svg?branch=develop)](https://coveralls.io/github/KITHU/SHOP_API?branch=develop)
 
-# **Shop-Api**
+# **RBAC-Api**
 ### **API Documentation**
 - This is a sample api using drf, It has three types of users admin, managers and cashier
 
   - [swagger documentation](https://shop-api-v1.herokuapp.com/)
-
-  ##### admin
-  - admin can create users, products and also delete them.
-  ##### manager
-  - managers can create products and also manage products
-  ##### cashier
-  - cashiers can only view products
 
 ## **Set Up Development Environment:**
 - Clone the repo and cd into it:
@@ -64,6 +57,7 @@ Example request body:
     "email":"doe@gmail.com",
     "role" : 1,
     "password":"1234"
+    "user_manager": user_id
 }
 
 Nb: role is optional field, by default a cashier role three will be created
@@ -84,35 +78,20 @@ Example request body:
 }
 ```
 
-## **products**
-### create 
-`POST /api/v1/products/product/`
+## **users**
+### List 
+`GET /api/v1/auth/users/`
 
-Example request body:
-``` 
-{
-    "name": "vodka",
-    "price": 205.00
-}
 ```
-Authentication required.
+  This endpoint will return all users
+  Response can be filtered to return all admin, managers or cashiers
+  Response can be filtered to return all user who are sharing the same manager
+```
 
-### list
-`GET /api/v1/products/product/`
+### List 
+`GET /api/v1/auth/users/`
 
-Authentication is not required.
-
-### retrieve 
-`GET /api/v1/products/product/<pk:int>`
-
-Authentication not required.
-
-### update 
-`UPDATE /api/v1/products/product/<pk:int>`
-
-Authentication IS required.
-
-### delete
-`DELETE /api/v1/products/product/<pk:int>`
-
-Authentication IS required.
+```
+  This endpoint will return all sub_users
+  Response can be filtered to return all sub_users who are either admin, managers or cashiers 
+```
