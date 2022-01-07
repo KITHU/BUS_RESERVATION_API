@@ -17,6 +17,7 @@ drf-yasg = "*"
 django-cors-headers = "*"
 daphne = "*"
 django-filter = "*"
+django = "==3.2.9"
 
 [requires]
 python_version = "3.8"
