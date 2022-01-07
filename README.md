@@ -65,6 +65,11 @@ Nb: role is optional field, by default a cashier role three will be created
 admin = 1
 manager = 2
 cashier = 3
+
+Nb: user_manager is optional field, but you empty value i.e
+
+ "user_manager": ""
+
 ```
 
 ### Login
@@ -83,15 +88,49 @@ Example request body:
 `GET /api/v1/auth/users/`
 
 ```
-  This endpoint will return all users
-  Response can be filtered to return all admin, managers or cashiers
-  Response can be filtered to return all user who are sharing the same manager
+  - This endpoint will return all users
+  - Response can be filtered to return    all admin, managers or cashiers
+  - Response can be filtered to return all user who are sharing the same manager
 ```
 
 ### List 
 `GET /api/v1/auth/users/`
 
 ```
-  This endpoint will return all sub_users
-  Response can be filtered to return all sub_users who are either admin, managers or cashiers 
+  - This endpoint will return all sub_users
+
+  - Response can be filtered to return all sub_users who are either admin, managers or cashiers 
 ```
+
+## **products**
+### create 
+`POST /api/v1/products/product/`
+
+Example request body:
+``` 
+{
+    "name": "vodka",
+    "price": 205.00
+}
+```
+Authentication required.
+
+### list
+`GET /api/v1/products/product/`
+
+Authentication is not required.
+
+### retrieve 
+`GET /api/v1/products/product/<pk:int>`
+
+Authentication not required.
+
+### update 
+`UPDATE /api/v1/products/product/<pk:int>`
+
+Authentication IS required.
+
+### delete
+`DELETE /api/v1/products/product/<pk:int>`
+
+Authentication IS required.

@@ -1,14 +1,14 @@
 from django.db.models.query import QuerySet
-from rest_framework import status, generics, viewsets
+from rest_framework import permissions, status, generics, viewsets
 from rest_framework.response import Response
 
 from api.src.authentication.models import User
 
 from .serializer import RegisterSerializer, LoginSerializer, UserSerializer
-from api.permissions import CreateUsersPermissions
+from api.permissions import CreateUsersPermissions, ProductsAccessPermissions
 
 class RegisterApiView(generics.GenericAPIView):
-    # permission_classes = [CreateUsersPermissions]
+    permission_classes = [CreateUsersPermissions]
     serializer_class = RegisterSerializer
 
     def post(self, request):
@@ -28,12 +28,14 @@ class LoginApiView(generics.GenericAPIView):
 
 
 class UserApiView(generics.ListAPIView):
+    permissions_classes = [ProductsAccessPermissions]
     serializer_class = UserSerializer
     queryset = User.objects.all()
     filterset_fields = ['role', 'user_manager']
 
 
 class SubUserApiView(generics.ListAPIView):
+    permissions_classes = [ProductsAccessPermissions]
     serializer_class = UserSerializer
     queryset = User.objects.filter(user_manager__isnull = False)
     filterset_fields = ['role','user_manager']
