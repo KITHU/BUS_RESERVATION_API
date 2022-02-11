@@ -18,6 +18,8 @@ django-cors-headers = "*"
 daphne = "*"
 django-filter = "*"
 django = "==3.2.9"
+django-phonenumber-field = "==5.2.0"
+phonenumbers = "==8.12.24"
 
 [requires]
 python_version = "3.8"

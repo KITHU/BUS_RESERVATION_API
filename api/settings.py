@@ -52,8 +52,10 @@ INSTALLED_APPS = [
     'django_filters',
     'drf_yasg',
     'corsheaders',
+    'phonenumber_field',
     'api.src.authentication',
-    'api.src.products'
+    'api.src.products',
+    'api.src.tickets',
 ]
 
 SWAGGER_SETTINGS = {
