@@ -1,10 +1,9 @@
 [![Build Status](https://app.travis-ci.com/KITHU/SHOP_API.svg?branch=develop)](https://app.travis-ci.com/KITHU/SHOP_API)
 [![Coverage Status](https://coveralls.io/repos/github/KITHU/SHOP_API/badge.svg?branch=develop)](https://coveralls.io/github/KITHU/SHOP_API?branch=develop)
 
-# **RBAC-Api**
+# **BUS RESERVATION-Api**
 ### **API Documentation**
-- This is a sample api using drf, It has three types of users admin, managers and cashier
-
+- This is a sample api using drf, It has two types of users admin and customers
   - [swagger documentation](https://shop-api-v1.herokuapp.com/)
 
 ## **Set Up Development Environment:**
@@ -46,91 +45,94 @@
 
 ```
 ## **Endpoints:**
-### Register
+### Bus
 
-`POST /api/v1/auth/register/`
-
-Example request body:
-``` 
-{
-    "username":"doe",
-    "email":"doe@gmail.com",
-    "role" : 1,
-    "password":"1234"
-    "user_manager": user_id
-}
-
-Nb: role is optional field, by default a cashier role three will be created
-
-admin = 1
-manager = 2
-cashier = 3
-
-Nb: user_manager is optional field, but you empty value i.e
-
- "user_manager": ""
-
-```
-
-### Login
-`POST /api/v1/auth/login/`
+`POST /api/v1/tickets/bus/`
 
 Example request body:
 ``` 
 {
-    "email":"doe@gmail.com",
-    "password":"1234"
+  "no_of_seat": 33,
+  "bus_name": "super metro"
 }
-```
-
-## **users**
-### List 
-`GET /api/v1/auth/users/`
 
 ```
-  - This endpoint will return all users
-  - Response can be filtered to return    all admin, managers or cashiers
-  - Response can be filtered to return all user who are sharing the same manager
-```
 
-### List 
-`GET /api/v1/auth/users/`
+`Get /api/v1/tickets/bus/`
+- Returns bus objects in the database
 
-```
-  - This endpoint will return all sub_users
+`Get /api/v1/tickets/bus/<id>`
+- Returns a specific bus object in the database
 
-  - Response can be filtered to return all sub_users who are either admin, managers or cashiers 
-```
+`Delete /api/v1/tickets/bus/<id>`
+- delete a specific bus object in the database
 
-## **products**
-### create 
-`POST /api/v1/products/product/`
+### Route
+`POST /api/v1/tickets/route/`
 
 Example request body:
 ``` 
 {
-    "name": "vodka",
-    "price": 205.00
+  "from_destination": "string",
+  "to_destination": "string"
 }
 ```
-Authentication required.
+`Get /api/v1/tickets/route/`
+- Returns route objects in the database
 
-### list
-`GET /api/v1/products/product/`
+`Get /api/v1/tickets/route/<id>`
+- Returns a route bus object in the database
 
-Authentication is not required.
+`Delete /api/v1/tickets/route/<id>`
+- delete a specific route object in the database
 
-### retrieve 
-`GET /api/v1/products/product/<pk:int>`
+### Schedule
+`POST /api/v1/tickets/schedule/`
 
-Authentication not required.
+Example request body:
+``` 
+{
+  "departure_time": "string",
+  "arrival_time": "string",
+  "date_of_travel": "2022-02-13",
+  "bus": 0,
+  "route": 0
+}
+```
+`Get /api/v1/tickets/schedule/`
+- Returns schedule objects in the database
 
-### update 
-`UPDATE /api/v1/products/product/<pk:int>`
+`Get /api/v1/tickets/schedule/<id>`
+- Returns a schedule bus object in the database
 
-Authentication IS required.
+`Delete /api/v1/tickets/schedule/<id>`
+- delete a specific schedule object in the database
 
-### delete
-`DELETE /api/v1/products/product/<pk:int>`
 
-Authentication IS required.
+### Reservation
+`POST /api/v1/tickets/reservation/`
+
+Example request body:
+``` 
+{
+  "customer_name": "string",
+  "seat_no": 0,
+  "schedule": {
+    "departure_time": "string",
+    "arrival_time": "string",
+    "date_of_travel": "2022-02-13",
+    "bus": bus_id,
+    "route": route_id
+  }
+
+}
+```
+`Get /api/v1/tickets/reservation/`
+- Returns reservation objects in the database
+
+`Get /api/v1/tickets/reservation/<id>`
+- Returns a reservation object in the database
+
+`Delete /api/v1/tickets/reservation/<id>`
+- delete a specific reservation object in the database
+

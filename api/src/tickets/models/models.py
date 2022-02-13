@@ -38,16 +38,16 @@ class Route(models.Model):
     to_destination = models.CharField(max_length=255, blank=False, null=False)
 
 
-class Departure(models.Model):
+class Schedule(models.Model):
     departure_time = models.TimeField(auto_now=False, auto_now_add=False)
     arrival_time = models.TimeField(auto_now=False, auto_now_add=False)
     date_of_travel = models.DateField(auto_now=False, auto_now_add=False)
-    bus_id = models.ForeignKey('Bus', on_delete=models.CASCADE)  
+    bus = models.ForeignKey('Bus', on_delete=models.CASCADE)  
     route = models.ForeignKey('Route', on_delete=models.CASCADE)
 
 
 class Reservation(models.Model):
     customer_name = models.CharField(max_length=80, unique=False, blank=False)
     seat_no = models.IntegerField()
-    schedule = models.ForeignKey('Departure', on_delete=models.CASCADE)
-    date = models.DateField()
+    schedule = models.ForeignKey('Schedule', on_delete=models.CASCADE)
+    date = models.DateField(auto_now=True)

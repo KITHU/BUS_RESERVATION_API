@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models.models import Bus, Departure, Passager, Reservation, Route
+from .models.models import Bus, Schedule, Passager, Reservation, Route
 
 
 class DynamicDepthSerializer(serializers.ModelSerializer):
@@ -30,10 +30,10 @@ class RouteSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class DepartureSerializer(serializers.ModelSerializer):
-    number=serializers.SerializerMethodField(read_only=True)
+class ScheduleSerializer(serializers.ModelSerializer):
+    available_seats=serializers.SerializerMethodField(read_only=True)
 
-    def get_number(self,obj):
+    def get_available_seats(self,obj):
         t= obj.bus_id.no_of_seat
         total = set(range(1,t+1))
         booked = Reservation.objects.values_list('seat_no',flat=True).filter(schedule=obj.id)
@@ -41,7 +41,7 @@ class DepartureSerializer(serializers.ModelSerializer):
         return total.difference(set(booked))
         
     def __init__(self, *args, **kwargs):
-        super(DepartureSerializer, self).__init__(*args, **kwargs)
+        super(ScheduleSerializer, self).__init__(*args, **kwargs)
         try:
             if self.context['request'].method in ['GET', 'RETRIEVE', ]:
                 self.fields['route'] = RouteSerializer()
@@ -49,8 +49,12 @@ class DepartureSerializer(serializers.ModelSerializer):
         except KeyError:
             pass
         
+    def create(self, validated_data):
+
+        return super().create(validated_data)  
+
     class Meta:
-        model = Departure
+        model = Schedule
         fields = '__all__'
 
 
@@ -62,9 +66,21 @@ class ReservationSerializer(serializers.ModelSerializer):
         super(ReservationSerializer, self).__init__(*args, **kwargs)
         try:
             if self.context['request'].method in ['GET', 'RETRIEVE', ]:
-                self.fields['schedule'] = DepartureSerializer()
+                self.fields['schedule'] = ScheduleSerializer()
         except KeyError:
             pass
+    
+    def create(self, validated_data):
+        schedule_id  = validated_data.get("schedule").id
+        seat_no = validated_data.get('seat_no')
+        no_of_seats = validated_data.get('schedule').bus.no_of_seat
+
+        if seat_no > no_of_seats or seat_no < 1:
+            raise serializers.ValidationError("That seat does not exist in this bus")
+        if Reservation.objects.all().filter(schedule = schedule_id, seat_no = seat_no).exists():
+            raise serializers.ValidationError("seat already booked by other customers")
+        
+        return super().create(validated_data)
 
     class Meta:
         model = Reservation
