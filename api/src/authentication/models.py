@@ -15,7 +15,9 @@ class UserManager(BaseUserManager):
             raise TypeError("Users should have email")
         user=self.model(username=username, email=self.normalize_email(email))
         user.set_password(password)
-        user.role= kwargs.get('role', 2)
+        user.is_superuser = True
+        user.is_staff = True
+        user.role= kwargs.get('role', 1)
         user.save()
         return user
 
