@@ -31,11 +31,5 @@ class UserApiView(generics.ListAPIView):
     permissions_classes = [ProductsAccessPermissions]
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    filterset_fields = ['role', 'user_manager']
+    filterset_fields = ['role']
 
-
-class SubUserApiView(generics.ListAPIView):
-    permissions_classes = [ProductsAccessPermissions]
-    serializer_class = UserSerializer
-    queryset = User.objects.filter(user_manager__isnull = False)
-    filterset_fields = ['role','user_manager']

@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'phonenumber_field',
     'api.src.authentication',
-    'api.src.products',
     'api.src.tickets',
 ]
 

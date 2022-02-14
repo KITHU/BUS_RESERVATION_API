@@ -22,32 +22,28 @@ class BaseTest(TestCase):
                 "username": "admin",
                 "email": "admin@gmail.com",
                 "role": 1,
-                "password": "1234",
-                "user_manager": ""
+                "password": "1234"
             }
 
         self.test_user2 = {
             'username':'manager',
             'email':'manager@gmail.com',
             'role': 2,
-            'password':'1234',
-            "user_manager": ""
+            'password':'1234'
         }
 
         self.test_user3 = {
             'username':'cashier',
             'email':'cashier@gmail.com',
             'role': 3,
-            'password':'1234',
-            "user_manager": ""
+            'password':'1234'
         }
 
         self.new_user = {
             'username':'shop',
             'email':'shop@gmail.com',
             'role': 3,
-            'password':'1234',
-            "user_manager": None
+            'password':'1234'
         }
         super_admin = RegisterSerializer(data=self.test_user1)
         super_admin.is_valid()

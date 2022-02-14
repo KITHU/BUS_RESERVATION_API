@@ -15,8 +15,7 @@ class UserManager(BaseUserManager):
             raise TypeError("Users should have email")
         user=self.model(username=username, email=self.normalize_email(email))
         user.set_password(password)
-        user.role= kwargs.get('role', 3)
-        user.user_manager = kwargs.get('user_manager','')
+        user.role= kwargs.get('role', 2)
         user.save()
         return user
 
@@ -26,7 +25,7 @@ class UserManager(BaseUserManager):
             raise TypeError("Users should have a password")
         
         user=self.create_user(username, email, password)
-        user.is_supperuser = True
+        user.is_superuser = True
         user.is_staff = True
         user.role = 1
         user.save()
@@ -50,7 +49,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True, default=3)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    user_manager = models.ForeignKey('User', on_delete=DO_NOTHING, blank=True, null=True,)
   
 
     USERNAME_FIELD = 'email'
