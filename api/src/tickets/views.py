@@ -17,14 +17,13 @@ class RouteViewset(viewsets.ModelViewSet):
     queryset = Route.objects.all()
     serializer_class = RouteSerializer
 
+
 class ScheduleViewset(viewsets.ModelViewSet):
     # queryset = Departure.objects.all()
     queryset = Schedule.objects.select_related().all()
     serializer_class = ScheduleSerializer
-    filterset_fields = ['date_of_travel']
+    filterset_fields = ['date_of_travel', 'route__from_destination','route__to_destination']
 
-    def list(self, request, *args, **kwargs):
-        return super().list(request, *args, **kwargs)
 
 class ReservationViewset(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
