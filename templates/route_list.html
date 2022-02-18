@@ -1,0 +1,27 @@
+{% extends "base.html"%}
+{%block content%}
+      {%for route in routes%}
+
+      <div class="card">
+         <div class="card-body">
+           <h5 class="card-title"><b>From:</b> {{route.from_destination}}</h5>
+           <p class="card-text"> <b>To:</b> {{route.to_destination}} </p>
+           <button class="btn btn-danger" onclick=location.href="{% url 'portal:route_delete' route.id %}"  >Delete</button>
+         </div>
+      </div>
+
+      {%endfor%}
+  
+{%endblock%}
+
+{%block scontent%}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Aditional links</h5>
+    <p class="card-text"> Click the button bellow to access new route form </p>
+    <button class="btn btn-outline-info" onclick=location.href="{% url 'portal:route_create' %}" type="submit">CREATE ROUTE</button>
+  </div>
+</div>
+
+
+{%endblock%}

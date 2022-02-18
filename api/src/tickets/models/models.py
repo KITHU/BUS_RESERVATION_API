@@ -30,12 +30,15 @@ class Bus(models.Model):
     bus_name = models.CharField(max_length=255, blank=False, null=False)
 
     def __str__(self):
-        return self.bus_name
+        return self.bus_name +" "+ str(self.no_of_seat) + " seater."
 
 
 class Route(models.Model):
     from_destination = models.CharField(max_length=255, blank=False, null=False)
     to_destination = models.CharField(max_length=255, blank=False, null=False)
+    
+    def __str__(self):
+        return self.from_destination +" to "+ self.to_destination
 
 
 class Schedule(models.Model):

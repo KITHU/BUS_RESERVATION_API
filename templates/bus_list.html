@@ -1,0 +1,28 @@
+{% extends "base.html"%}
+{%block content%}
+      {%for bus in buses%}
+
+      <div class="card">
+         <div class="card-body">
+           <h5 class="card-title"><b>Bus Name:</b> {{bus.bus_name}}</h5>
+           <p class="card-text"> <b>No_of_seats:</b> {{bus.no_of_seat}} </p>
+           <button class="btn btn-danger" onclick=location.href="{% url 'portal:bus_delete' bus.id %}"  >Delete</button>
+         </div>
+      </div>
+
+      {%endfor%}
+  
+{%endblock%}
+
+{%block scontent%}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Aditional links</h5>
+    <p class="card-text"> Click the button bellow to access new bus form </p>
+    <button class="btn btn-outline-info" onclick=location.href="{% url 'portal:bus_create' %}" type="submit">CREATE BUS</button>
+  </div>
+</div>
+
+
+{%endblock%}
+

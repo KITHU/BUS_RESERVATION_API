@@ -1,0 +1,32 @@
+{% extends "base.html"%}
+{% load crispy_forms_tags %}
+{%block content%}
+
+<div class="card" >
+    <div class="card-body">
+        <form method="post">
+             {% csrf_token %}
+        <fieldset class="form-group">
+            {{busform|crispy }}
+            <!-- {{busform}} -->
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">CREATE NEW BUS</button>
+            <button class="btn btn-outline-info" onclick=location.href="{% url 'portal:bus_list' %}" type="submit">GO BACK TO LIST</button>
+         </div>
+        </form>
+    </div>
+</div>
+{%endblock%}
+
+{%block scontent%}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Aditional information</h5>
+    <p class="card-text"> A bus can only contain a <b>minimum of 14 seats</b> and a <b>maxmum of 67 seats</b> </p>
+    
+  </div>
+</div>
+
+
+{%endblock%}

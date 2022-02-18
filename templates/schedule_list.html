@@ -1,0 +1,27 @@
+{% extends "base.html"%}
+{%block content%}
+      {%for schedule in schedules%}
+
+      <div class="card">
+         <div class="card-body">
+           <h5 class="card-title"><b>From:</b> {{schedule.departure_time}}</h5>
+           <p class="card-text"> <b>To:</b> {{schedule.arrival_time}} </p>
+           <button class="btn btn-danger" onclick=location.href="{% url 'portal:schedule_delete' schedule.id %}">Delete</button>
+         </div>
+      </div>
+
+      {%endfor%}
+  
+{%endblock%}
+
+{%block scontent%}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Aditional links</h5>
+    <p class="card-text"> Click the button bellow to access new schedule form </p>
+    <button class="btn btn-outline-info" onclick=location.href="{% url 'portal:schedule_create' %}" type="submit">CREATE SCHEDULE</button>
+  </div>
+</div>
+
+
+{%endblock%}

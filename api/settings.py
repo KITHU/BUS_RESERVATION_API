@@ -51,10 +51,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'drf_yasg',
+    'crispy_forms',
     'corsheaders',
     'phonenumber_field',
     'api.src.authentication',
     'api.src.tickets',
+    'api.src.portal',
 ]
 
 SWAGGER_SETTINGS = {
@@ -84,7 +86,7 @@ ROOT_URLCONF = 'api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
