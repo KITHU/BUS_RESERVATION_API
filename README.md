@@ -9,6 +9,7 @@
 ## **Set Up Development Environment:**
 - Clone the repo and cd into it:
 - Make a copy of the .env.sample file and rename it to .env and update the variables accordingly
+- ensure redis server is running
 - Activate a virtual environment:
   ```
     pipenv shell
@@ -43,6 +44,12 @@
   email: test@test.com
   password: test1234
 
+```
+
+### MVT URLS
+```
+  [admin portal:]()
+  [customer portal:]()
 ```
 ## **Endpoints:**
 ### Bus

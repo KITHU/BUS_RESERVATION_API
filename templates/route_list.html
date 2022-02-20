@@ -1,11 +1,14 @@
 {% extends "base.html"%}
+{%block nav%}
+{%include "navbar.html"%}
+{%endblock%}
 {%block content%}
       {%for route in routes%}
 
       <div class="card">
          <div class="card-body">
-           <h5 class="card-title"><b>From:</b> {{route.from_destination}}</h5>
-           <p class="card-text"> <b>To:</b> {{route.to_destination}} </p>
+           <h5 class="card-title"><b>From:</b> {{route.from_destination}} <b>To:</b> {{route.to_destination}}</h5>
+           <p class="card-text"> <b>N.B:</b><i> Route stop overs coming soon...</i> </p>
            <button class="btn btn-danger" onclick=location.href="{% url 'portal:route_delete' route.id %}"  >Delete</button>
          </div>
       </div>
@@ -18,7 +21,7 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">Aditional links</h5>
-    <p class="card-text"> Click the button bellow to access new route form </p>
+    <p class="card-text"> Click the button bellow to create new route....</p>
     <button class="btn btn-outline-info" onclick=location.href="{% url 'portal:route_create' %}" type="submit">CREATE ROUTE</button>
   </div>
 </div>

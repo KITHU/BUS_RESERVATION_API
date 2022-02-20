@@ -12,11 +12,13 @@ coreschema==0.0.4
 coverage==6.3.1
 cryptography==36.0.1
 daphne==3.0.2
+Deprecated==1.2.13
 Django==3.2.9
 django-cors-headers==3.11.0
 django-crispy-forms==1.14.0
 django-filter==21.1
 django-phonenumber-field==5.2.0
+django-redis==5.2.0
 djangorestframework==3.13.1
 djangorestframework-simplejwt==5.0.0
 drf-yasg==1.20.0
@@ -44,6 +46,7 @@ pytest==7.0.1
 pytest-cov==3.0.0
 pytest-django==4.5.2
 pytz==2021.3
+redis==4.1.4
 requests==2.27.1
 ruamel.yaml==0.17.21
 ruamel.yaml.clib==0.2.6
@@ -58,4 +61,5 @@ typing_extensions==4.1.1
 uritemplate==4.1.1
 urllib3==1.26.8
 whitenoise==6.0.0
+wrapt==1.13.3
 zope.interface==5.4.0

@@ -1,4 +1,7 @@
 {% extends "base.html"%}
+{%block nav%}
+{%include "navbar.html"%}
+{%endblock%}
 {% load crispy_forms_tags %}
 {%block content%}
 
@@ -23,7 +26,7 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">Aditional information</h5>
-    <p class="card-text"> A bus can only contain a <b>minimum of 14 seats</b> and a <b>maxmum of 67 seats</b> </p>
+    <p class="card-text"> A route name should start with a alphabet character</p>
   </div>
 </div>
 

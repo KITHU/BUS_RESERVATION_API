@@ -5,7 +5,7 @@ from .views import BusViewset, ScheduleViewset, PassagerViewset, ReservationView
 
 router = routers.DefaultRouter()
 
-# router.register(r'passager', PassagerViewset)
+router.register(r'passager', PassagerViewset)
 router.register(r'bus', BusViewset)
 router.register(r'route', RouteViewset)
 router.register(r'schedule', ScheduleViewset)

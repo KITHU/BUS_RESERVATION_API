@@ -1,11 +1,8 @@
 {% extends "base.html"%}
-{%block nav%}
-{%include "navbar.html"%}
-{%endblock%}
 {% load crispy_forms_tags %}
-{%block content%} 
+{%block content%}
+  
       {%for schedule in schedules%}
-      
       <div class="card">
          <div class="card-body">
            <h5 class="card-title"><b>Route:</b> {{schedule.route}}</h5>
@@ -13,8 +10,9 @@
            <p class="card-text"> <b>Date:</b> {{schedule.date_of_travel}} </p>
            <p class="card-text"> <b>Departure Time:</b> {{schedule.arrival_time}} </p>
            <p class="card-text"> <b>Arrival_Time:</b> {{schedule.arrival_time}} </p>
-           <button class="btn btn-danger" onclick=location.href="{% url 'portal:schedule_delete' schedule.id %}">Delete</button>
+           <button class="btn btn-info" onclick=location.href="{% url 'portal:select_seat' %}">Next Select Seat</button>
          </div>
+         
       </div>
 
       {%endfor%}
@@ -22,13 +20,14 @@
 {%endblock%}
 
 {%block scontent%}
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title">Aditional links</h5>
-    <p class="card-text"> Click the button bellow to access new schedule form </p>
-    <button class="btn btn-outline-info" onclick=location.href="{% url 'portal:schedule_create' %}" type="submit">CREATE SCHEDULE</button>
-  </div>
-</div>
+<div class="card" >
+    <div class="card-body">
+        <form method="get"> 
+          {{myfilter.form|crispy}}
+          <input type="submit" value="search"/>
+        </form>
+    </div>
+</div> 
 
 
 {%endblock%}

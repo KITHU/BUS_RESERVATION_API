@@ -1,8 +1,9 @@
 from django.forms import models
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
+from api.src.portal.filters import ScheduleFilter
 
-from api.src.tickets.models.models import Bus, Route, Schedule
+from api.src.tickets.models.models import Bus, Reservation, Route, Schedule
 from .forms import BusForm, RouteForm, ScheduleForm
 
 
@@ -52,7 +53,7 @@ def route_create(request):
     
     if request.method == 'POST':
         routeform = RouteForm(request.POST)
-        if routeform .is_valid():
+        if routeform.is_valid():
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
@@ -69,8 +70,8 @@ def route_create(request):
 def schedule_create(request):
     
     if request.method == 'POST':
-        scheduleform = RouteForm(request.POST)
-        if scheduleform .is_valid():
+        scheduleform = ScheduleForm(request.POST)
+        if scheduleform.is_valid():
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
@@ -86,7 +87,12 @@ def schedule_create(request):
 
 def schedule_list(request):
     schedules = Schedule.objects.all()
-    return render(request,'schedule_list.html',{'schedules' : schedules})
+    myfilter = ScheduleFilter(request.GET, queryset=schedules)
+    
+    schedules= myfilter.qs
+    
+    context = {'schedules' : schedules, 'myfilter':myfilter}
+    return render(request,'schedule_list.html',context)
 
 
 def schedule_delete(request, id):
@@ -95,3 +101,20 @@ def schedule_delete(request, id):
         schedule.delete()
         return redirect('/api/v1/portal/schedule_list')
 
+
+def schedule_search(request):
+    schedules = Schedule.objects.all()
+    
+
+    myfilter = ScheduleFilter(request.GET, queryset=schedules)
+   
+    
+    schedules = myfilter.qs
+    
+    context = {'schedules' : schedules, 'myfilter':myfilter}
+  
+    return render(request,'search_schedule.html',context)
+
+
+def seat_seat(request):
+    return render(request,'select_seat.html')
