@@ -47,10 +47,11 @@
 ```
 
 ### MVT URLS
-```
-  [admin portal:]()
-  [customer portal:]()
-```
+
+- [admin portal:](https://shop-api-v1.herokuapp.com/api/v1/portal/bus_list/)
+
+- [customer portal:](https://shop-api-v1.herokuapp.com/api/v1/portal/schedules/)
+
 ## **Endpoints:**
 ### Bus
 
