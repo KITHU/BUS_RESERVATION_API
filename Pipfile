@@ -22,6 +22,7 @@ django-phonenumber-field = "==5.2.0"
 phonenumbers = "==8.12.24"
 django-crispy-forms = "*"
 django-redis = "*"
+django-debug-toolbar = "*"
 
 [requires]
 python_version = "3.8"

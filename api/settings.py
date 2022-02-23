@@ -34,6 +34,8 @@ SIMPLE_JWT = {
 
 ALLOWED_HOSTS = ['*']
 
+INTERNAL_IPS = ['127.0.0.1']
+
 AUTH_USER_MODEL = 'authentication.User'
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 # Application definition
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_filters',
+    'debug_toolbar',
     'drf_yasg',
     'crispy_forms',
     'corsheaders',
@@ -70,6 +73,11 @@ SWAGGER_SETTINGS = {
 }
 
 MIDDLEWARE = [
+    # 'django.middleware.cache.UpdateCacheMiddleware',
+    # 'django.middleware.common.CommonMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

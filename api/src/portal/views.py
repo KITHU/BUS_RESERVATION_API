@@ -17,7 +17,7 @@ def bus_delete(request, id):
     if Bus.objects.filter(id=id):
         bus = Bus.objects.filter(id=id)
         bus.delete()
-        return redirect('/api/v1/portal/bus_list')
+        return redirect('/api/v1/portal/bus_list/')
 
 def bus_create(request):
     
