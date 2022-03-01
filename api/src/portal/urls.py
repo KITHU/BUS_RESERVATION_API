@@ -6,6 +6,7 @@ app_name = 'portal'
 urlpatterns = [
      path('bus_list/', views.bus_list, name='bus_list'),
      path('bus_delete/<int:id>/',views.bus_delete, name='bus_delete'),
+     path('bus_update/<int:id>/', views.bus_update, name='bus_update'),
      path('bus_create/',views.bus_create , name='bus_create' ),
 
      path('route_list/', views.route_list, name='route_list'),

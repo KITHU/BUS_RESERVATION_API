@@ -19,6 +19,22 @@ def bus_delete(request, id):
         bus.delete()
         return redirect('/api/v1/portal/bus_list/')
 
+
+def bus_update(request, id):
+    b = Bus.objects.get(pk=id)
+
+    busform = BusForm(instance=b)
+    if request.method == 'POST':
+        busform = BusForm(request.POST, instance=b)
+        if busform.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            busform.save()
+            return redirect('/api/v1/portal/bus_list')
+    return render(request,'bus_update.html', {'busform': busform})
+
+
 def bus_create(request):
     
     if request.method == 'POST':

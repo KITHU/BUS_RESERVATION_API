@@ -9,6 +9,7 @@
          <div class="card-body">
            <h5 class="card-title"><b>Bus Name:</b> {{bus.bus_name}}</h5>
            <p class="card-text"> <b>No_of_seats:</b> {{bus.no_of_seat}} </p>
+           <button class="btn btn-info" onclick=location.href="{% url 'portal:bus_update' bus.id %}"  >update</button>
            <button class="btn btn-danger" onclick=location.href="{% url 'portal:bus_delete' bus.id %}"  >Delete</button>
          </div>
       </div>
