@@ -11,6 +11,7 @@ urlpatterns = [
 
      path('route_list/', views.route_list, name='route_list'),
      path('route_delete/<int:id>/',views.route_delete, name='route_delete'),
+     path('route_update/<int:id>/',views.route_update, name='route_update'),
      path('route_create/',views.route_create , name='route_create'),
 
      path('schedule_create/',views.schedule_create , name='schedule_create'),

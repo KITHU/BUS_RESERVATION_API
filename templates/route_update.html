@@ -10,12 +10,12 @@
         <form method="post">
              {% csrf_token %}
         <fieldset class="form-group">
-            {{busform|crispy }}
-            <!-- {{busform}} -->
+            {{routeform|crispy }}
+            <!-- {{routeform}} -->
         </fieldset>
         <div class="form-group">
             <button class="btn btn-outline-info" type="submit">update</button>
-            <button class="btn btn-outline-info" onclick=location.href="{% url 'portal:bus_list' %}" type="submit">cancel</button>
+            <button class="btn btn-outline-info" onclick=location.href="{% url 'portal:route_list' %}" type="submit">cancel</button>
          </div>
         </form>
     </div>
@@ -26,8 +26,7 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">Aditional information</h5>
-    <p class="card-text"> A bus can only contain a <b>minimum of 14 seats</b> and a <b>maxmum of 67 seats</b> </p>
-    
+    <p class="card-text"> A route name should start with a alphabet character</p>
   </div>
 </div>
 

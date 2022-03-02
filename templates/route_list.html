@@ -9,6 +9,7 @@
          <div class="card-body">
            <h5 class="card-title"><b>From:</b> {{route.from_destination}} <b>To:</b> {{route.to_destination}}</h5>
            <p class="card-text"> <b>N.B:</b><i> Route stop overs coming soon...</i> </p>
+           <button class="btn btn-info" onclick=location.href="{% url 'portal:route_update' route.id %}"  >update</button>
            <button class="btn btn-danger" onclick=location.href="{% url 'portal:route_delete' route.id %}"  >Delete</button>
          </div>
       </div>

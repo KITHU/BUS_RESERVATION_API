@@ -65,6 +65,17 @@ def route_delete(request, id):
         route.delete()
         return redirect('/api/v1/portal/route_list')
 
+
+def route_update(request, id):
+    b = Route.objects.get(pk=id)
+    routeform = RouteForm(instance=b)
+    if request.method == 'POST':
+        routeform = RouteForm(request.POST, instance=b)
+        routeform.save()
+        return redirect('/api/v1/portal/route_list')
+    return render(request, 'route_update.html', {'routeform': routeform })
+
+
 def route_create(request):
     
     if request.method == 'POST':
