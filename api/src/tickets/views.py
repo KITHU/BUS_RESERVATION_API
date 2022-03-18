@@ -1,32 +1,45 @@
+"""module doc here."""
+
 from rest_framework import viewsets
 from .models.models import Bus, Schedule, Passager, Reservation, Route
-from .serializer import BusSerializer, ScheduleSerializer, PassagerSerializer, ReservationSerializer, RouteSerializer
-from api.permissions import ProductsAccessPermissions
+from .serializer import (BusSerializer, ScheduleSerializer, PassagerSerializer,
+                         ReservationSerializer, RouteSerializer)
+# from api.permissions import ProductsAccessPermissions
 
 # from django.utils.decorators import method_decorator
 # from django.views.decorators.cache import cache_page
 # from django.views.decorators.vary import vary_on_cookie
 
 
-
 class PassagerViewset(viewsets.ModelViewSet):
+    """class doc here."""
+
     queryset = Passager.objects.all()
     serializer_class = PassagerSerializer
 
+
 class BusViewset(viewsets.ModelViewSet):
+    """class doc here."""
+
     queryset = Bus.objects.all()
     serializer_class = BusSerializer
 
+
 class RouteViewset(viewsets.ModelViewSet):
+    """class doc here."""
+
     queryset = Route.objects.all()
     serializer_class = RouteSerializer
 
 
 class ScheduleViewset(viewsets.ModelViewSet):
+    """class doc here."""
+
     # queryset = Departure.objects.all()
     queryset = Schedule.objects.select_related().all()
     serializer_class = ScheduleSerializer
-    filterset_fields = ['date_of_travel', 'route__from_destination','route__to_destination']
+    filterset_fields = ['date_of_travel', 'route__from_destination',
+                        'route__to_destination']
 
     # @method_decorator(vary_on_cookie)
     # @method_decorator(cache_page(60*60))
@@ -35,5 +48,7 @@ class ScheduleViewset(viewsets.ModelViewSet):
 
 
 class ReservationViewset(viewsets.ModelViewSet):
+    """class doc here."""
+
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer

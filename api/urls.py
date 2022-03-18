@@ -1,4 +1,4 @@
-"""api URL Configuration"""
+"""api URL Configuration."""
 
 from django.contrib import admin
 from django.urls import path, include
@@ -19,11 +19,14 @@ schema_view = get_schema_view(
    permission_classes=(permissions.AllowAny,),
 )
 
+# handler404 = "handler404"
+
 urlpatterns = [
    path('admin/', admin.site.urls),
    path('api/v1/auth/', include('api.src.authentication.urls')),
    path('api/v1/tickets/', include('api.src.tickets.urls')),
    path('api/v1/portal/', include('api.src.portal.urls')),
-   path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+   path('', schema_view.with_ui('swagger', cache_timeout=0),
+        name='schema-swagger-ui'),
    path('__debug__/', include('debug_toolbar.urls')),
 ]
